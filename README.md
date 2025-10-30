@@ -22,15 +22,8 @@ You will submit your ERD via a GitHub Issue — no forks or pull requests requir
 - Use Command Palette → “New Sample ER Model” to start, or write your own.
 - Open the diagram from the editor toolbar or press Ctrl/⌘+O.
 
-2) Submit via GitHub Issue
-- Go to: https://github.com/BADM554/ERD/issues → “New issue”.
-- Choose “ERD Submission” template (if available) or open a blank issue.
-- Title: `Submission: Firstname Lastname`.
-- Attach your `.erd` file by dragging it into the issue body.
-- Provide any requested details (name, section, email) and click “Submit new issue”.
+2) Push your files back to your remote repo. Copy your repo URL and submit via assignment setup for class. 
 
-3) Updates/Resubmissions
-- If you need to resubmit, open a new issue with the updated `.erd` attached.
 
 ## Optional: Git one‑time setup (only if you plan to use Git locally)
 Run once in a VS Code terminal:
@@ -40,7 +33,6 @@ git config --global user.email "you@example.com"
 ```
 
 ## Notes
-- You do not need to fork or open a pull request for submissions.
 - Place your `.erd` file(s) at the repository root when working locally.
 - Keep filenames consistent with the convention `Firstname_Lastname.erd` unless instructed otherwise.
 
