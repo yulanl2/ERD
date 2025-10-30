@@ -1,0 +1,156 @@
+erdiagram RCModels
+
+notation=crowsfoot
+
+// Entities
+entity Customer {
+    C_ID: INTEGER key
+    C_FName: VARCHAR(100)
+    C_LName: VARCHAR(100)
+    C_Address: TEXT
+    C_DOB: DATE
+    C_Gender: VARCHAR(10)
+    C_Tel: VARCHAR(20)
+    C_Email: VARCHAR(150)
+}
+
+entity Campaign {
+    Campaign_ID: INTEGER key
+    Campaign_Name: VARCHAR(200)
+    Start_Date: DATE
+    End_Date: DATE
+}
+
+entity Customer_Campaign {
+    C_ID: INTEGER key
+    Campaign_ID: INTEGER key
+}
+
+entity Product {
+    P_ID: INTEGER key
+    P_Name: VARCHAR(200)
+    P_Description: TEXT
+    M_ID: INTEGER
+    P_Scale: VARCHAR(20)
+}
+
+entity ProductCategory {
+    P_CatID: INTEGER key
+    P_CatName: VARCHAR(100)
+}
+
+entity SalesOrder {
+    SO_ID: INTEGER key
+    C_ID: INTEGER
+    SO_Date: DATE
+    SO_Total_Price: DECIMAL(12,2)
+    SO_Payment_condition: VARCHAR(100)
+    SO_Shipment_condition: VARCHAR(100)
+    SO_Shipment_date: DATE
+}
+
+entity SalesOrderLine {
+    SO_Line_ID: INTEGER key
+    SO_ID: INTEGER
+    P_ID: INTEGER
+    P_Quantity: INTEGER
+    P_Price: DECIMAL(10,2)
+}
+
+entity PurchaseOrder {
+    PO_ID: INTEGER key
+    M_ID: INTEGER
+    PO_Date: DATE
+    PO_Total_Price: DECIMAL(12,2)
+    PO_Payment_condition: VARCHAR(100)
+    PO_Received_Date: DATE
+}
+
+entity PurchaseOrder_Line {
+    PO_Line_ID: INTEGER key
+    PO_ID: INTEGER
+    P_ID: INTEGER
+    P_Quantity: INTEGER
+    P_Price: DECIMAL(10,2)
+}
+
+entity Manufacturer {
+    M_ID: INTEGER key
+    M_Name: VARCHAR(200)
+    M_Address: TEXT
+    M_Tel: VARCHAR(20)
+    M_Zip_Code: VARCHAR(20)
+    M_City: VARCHAR(100)
+}
+
+entity Payment {
+    Payment_ID: INTEGER key
+    SO_ID: INTEGER
+    Amount: DECIMAL(12,2)
+    Method: VARCHAR(50)
+    AuthCode: VARCHAR(100)
+    Status: VARCHAR(50)
+    CreatedDate: DATETIME
+}
+
+entity Shipment {
+    Shipment_ID: INTEGER key
+    SO_ID: INTEGER
+    ShipmentDate: DATE
+    TrackingNumber: VARCHAR(100)
+    ShippingMethod: VARCHAR(50)
+    ShipmentCharge: DECIMAL(10,2)
+}
+
+// Relationships (crowsfoot notation)
+relationship Places {
+    Customer[1] -> SalesOrder[0..N]
+}
+
+relationship Contains {
+    SalesOrder[1] -> SalesOrderLine[N]
+}
+
+relationship LineProduct {
+    Product[1] -> SalesOrderLine[0..N]
+}
+
+relationship Supplies {
+    Manufacturer[1] -> Product[0..N]
+}
+
+relationship PurchaseOrders {
+    Manufacturer[1] -> PurchaseOrder[0..N]
+}
+
+relationship POContains {
+    PurchaseOrder[1] -> PurchaseOrder_Line[N]
+}
+
+relationship POProduct {
+    Product[1] -> PurchaseOrder_Line[0..N]
+}
+
+relationship Categorized {
+    Product[N] -> ProductCategory[N]
+}
+
+relationship CampaignParticipation {
+    Customer[N] -> Campaign[N]
+}
+
+relationship Paid_By {
+    SalesOrder[1] -> Payment[0..N]
+}
+
+relationship Shipped_By {
+    SalesOrder[1] -> Shipment[0..N]
+}
+
+// Notes / assumptions (kept as comments)
+// - SalesOrder represents customer sales (previously "Invoice").
+// - PurchaseOrder represents manufacturer purchases (previously "Order").
+// - Payments link to SalesOrder (one SalesOrder may have multiple payments for partial payments).
+// - SalesOrder must have at least one SalesOrderLine (enforced by [N] multiplicity on Contains).
+// - Product-ProductCategory is modeled as many-to-many (Categorized relationship).
+// - Customer_Campaign is kept as a join entity (composite key) and CampaignParticipation relationship also shown for clarity.
