@@ -14,13 +14,13 @@ This repository is for students to submit Entity‑Relationship Diagrams (ERDs) 
 - Verify: `java -version` (shows 11+)
 
 ## Submission (No PRs/Merges)
-You will submit your ERD via a GitHub Issue — no forks or pull requests required.
+You will submit your ERD by submitting your remote repository url 
 
 1) Create your ERD in VS Code
 - Ensure bigER extension is installed and Java works: `java -version` shows 11+.
 - Create a file at the repo root, for example: `Firstname_Lastname.erd`.
-- Use Command Palette → “New Sample ER Model” to start, or write your own.
-- Open the diagram from the editor toolbar or press Ctrl/⌘+O.
+- Follow instructions in class to create your model using your own business rules. Save the model in the file `Firstname_Lastname.erd` (replace with your name)
+- You can view/Open the diagram from the editor toolbar or press Ctrl/⌘+O. 
 
 2) Push your files back to your remote repo. Copy your repo URL and submit via assignment setup for class. 
 
