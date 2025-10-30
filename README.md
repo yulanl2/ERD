@@ -6,14 +6,10 @@ This repository is for students to submit Entity‑Relationship Diagrams (ERDs) 
 - VS Code installed
 - Git installed and a GitHub account
 - Java 11+ runtime (JDK recommended)
-- VS Code extension: BIGER Modeling Tool (`BIGModelingTools.erdiagram`)
+- VS Code extension: BIGER Modeling Tool 
 
-### Install Java quickly
-- macOS (Homebrew): `brew install --cask temurin17`
-- Windows (winget): `winget install --id EclipseAdoptium.Temurin.17.JDK -e`
-- Verify: `java -version` (shows 11+)
 
-## Submission (No PRs/Merges)
+## Submission 
 You will submit your ERD by submitting your remote repository url 
 
 1) Create your ERD in VS Code
